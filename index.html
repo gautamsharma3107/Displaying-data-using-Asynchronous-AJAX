@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+</head>
+<body>
+    
+    <body>
+        <h1>Displaying data using Asynchronous AJAX</h1>
+        <button type="button" onclick="fetchData()">Fetch data</button>
+    
+        <p id="np"></p>
+        <script>
+            
+            function fetchData() {
+                var zx = new XMLHttpRequest(); //creating an HTML request object
+    
+                zx.open("GET", 'https://jsonplaceholder.typicode.com/users/1', true);
+                zx.overrideMimeType('text/xml');//force the response to be parsed as XML
+    
+                zx.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("np").innerHTML = this.responseText;//returns the response data as string
+                        console.log(this.responseText);
+                    }
+                }
+                zx.send();// sends request to the server used for GET request
+            }
+                //fetchData();// function calling
+        </script>
+    </body>
+</body>
+</html>
